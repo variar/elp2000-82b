@@ -1,0 +1,46 @@
+This library contains an implementation of the ELP theory version ELP 2000-82B
+developed by M. Chapront-Touzé and J. Chapront at Bureau des Longitude, Paris,
+France.
+
+This library lets you compute relatively accurate ephemeris of the Moon. For
+more information, see header comment of elp2000-82b.h.
+
+It is implemented in C and needs be linked only against math library.
+
+Implementation is based on the following papers:
+
+1) M. Chapront-Touzé and J. Chapront. The lunar ephemeris ELP 2000.
+   Astronomy and Astrophysics, vol. 124, 1983, pp. 50-62.
+2) M. Chapront-Touzé and J. Chapront. ELP 2000-85: a semi-analytical lunar
+   ephemeris adequate for historical times. Astronomy and Astrophysics,
+   vol. 190, 1988, pp. 342-352.
+3) M. Chapront-Touzé, J. Chapront, G. Francou. Lunar solution ELP version
+   ELP 2000-82B. Observatoire de Paris, 2001 (1985).
+4) J. Chapront and G. Francou. The lunar theory ELP revisited. Introduction
+   of new planetary perturbations. Astronomy and Astrophysics, vol. 404,
+   2003, pp. 735-742.
+   
+As well as data files found at ftp://cdsarc.u-srasbg.fr/pub/cats/VI/79
+
+You are free to compile and use this library in any way that does not couse
+any harm or troubles.
+
+You are also free to copy, use or modify the source code or its parts on one
+condition: your source code should reference this library or original papers
+it was based on.
+
+Namely, if you include these sources or their parts into some of your projects,
+add one of the following comments to your source code:
+
+// Based on elp2000-82b implementation by S. Tsyba
+also provide a link where you downloaded sources from
+
+or
+
+// Based on paper by M. Chapront-Touzé and J. Chapront, The lunar ephemeris
+// ELP 2000 published at Astronomy and Astrophysics, vol. 124, 1983, pp. 50-62.
+
+This is needed to give credit to scientists and their studies without which 
+these implementations would not be possible. This library references original
+papers in every source file, so if you reference this library from your sources,
+then the credit may be traced to the original papers.
