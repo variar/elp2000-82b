@@ -2,9 +2,9 @@
  * elp2000.h - ELP2000-82B main file.
  * Created by Serhii Tsyba (sertsy@gmail.com) on 21.04.10.
  *
- * This is an implementation of the semi-analytic lunar theory ELP version
- * ELP 2000-82B. This theory and its current implementation allows computation
- * of lunar ephemeris.
+ * This is an implementation of the semi-analytic lunar theory ELP 2000 version
+ * 82B. It allows computation of a geocentric geometric lunar position and
+ * hence allowing to compute lunar ephemeris.
  *
  * Four functions are given to compute geocentric moon position:
  *      a) geocentric_moon_position - computes position of the Moon in
@@ -45,12 +45,6 @@
  * latitude and kilometers for distance. All rectangular coordinates are
  * measured in kilometers.
  *
- * Position of the Moon is computed by calculating a set of Fourier and Poisson
- * series, where coefficients of the series are stored in memory. This may
- * result in a relatively large memory usage by the software, but the benefit is
- * a faster computation which avoids I/O operations for the series data as well
- * as, for instance, allowing usage on a platform with no access to a filesystem.
- *
  * The accuray of the theory ELP version ELP 2000-82B is different from
  * numerical ephemeris LE 51 of the NASA Jet Propulsion Laboratory in
  *      longitude - ±800 arcseconds
@@ -58,20 +52,18 @@
  *      distance  - ±0.1 kilometers
  * for the timeframe 1900 - 2000 A.D. and increases with time [1, p. 59, fig. 4].
  *
- * For more information on solution ELP version ELP 2000-82B, see the following
- * materials.
- *
- * References:
- * 1) M. Chapront-Touzé and J. Chapront. The lunar ephemeris ELP 2000.
- *    Astronomy and Astrophysics, vol. 124, 1983, pp. 50-62.
- * 2) M. Chapront-Touzé and J. Chapront. ELP 2000-85: a semi-analytical lunar
- *    ephemeris adequate for historical times. Astronomy and Astrophysics,
- *    vol. 190, 1988, pp. 342-352.
- * 3) M. Chapront-Touzé, J. Chapront, G. Francou. Lunar solution ELP version
- *    ELP 2000-82B. Observatoire de Paris, 2001 (1985).
- * 4) J. Chapront and G. Francou. The lunar theory ELP revisited. Introduction
- *    of new planetary perturbations. Astronomy and Astrophysics, vol. 404,
- *    2003, pp. 735-742.
+ * For more information on solution ELP version ELP 2000-82B refer to the
+ * following papers:
+ *      1) M. Chapront-Touzé and J. Chapront. The lunar ephemeris ELP 2000.
+ *         Astronomy and Astrophysics, vol. 124, 1983, pp. 50-62.
+ *      2) M. Chapront-Touzé and J. Chapront. ELP 2000-85: a semi-analytical
+ *         lunar ephemeris adequate for historical times. Astronomy and
+ *         Astrophysics, vol. 190, 1988, pp. 342-352.
+ *      3) M. Chapront-Touzé, J. Chapront, G. Francou. Lunar solution ELP
+ *         version ELP 2000-82B. Observatoire de Paris, 2001 (1985).
+ *      4) J. Chapront and G. Francou. The lunar theory ELP revisited.
+ *         Introduction of new planetary perturbations. Astronomy and
+ *         Astrophysics, vol. 404, 2003, pp. 735-742.
  */
 
 #ifndef ELP2000_H

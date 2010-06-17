@@ -1,6 +1,26 @@
 /*
- *  series.h
- *  Created by Serhii Tsyba on 08.06.10.
+ * series.h
+ * Created by Serhii Tsyba on 08.06.10.
+ *
+ * This file contains routines to compute series of the ELP theory. There are
+ * four series in total and a seperate function is given for each of the serie.
+ * Expressions for series are
+ *
+ * A{sin|cos}(i₁D + i₂l' + i₃l + i₄F)
+ * Asin(i₁ζ + i₂D + i₃l' + i₄l + i₅F + φ)
+ * Asin(i₁Me + i₂V + i₃T + i₄Ma + i₅J + i₆S + i₇U + i₈N + i₉D + i₁₀l + i₁₁F + φ)
+ * Asin(i₁Me + i₂V + i₃T + i₄Ma + i₅J + i₆S + i₇U + i₈D + i₉l + i₁₀l' + i₁₁F + φ)
+ *
+ * First serie uses either sine when computing longitude and latitude and cosine
+ * when computing radial distance. For the sake of code simplicity two separate
+ * functions are given for either expressions.
+ *
+ * Each function takes different set of arguments each is explained in more
+ * detail for every function in its own commentary. It should be noted that
+ * indexing of all arrays of the argumets should be preserved as stated in the
+ * description.
+ *
+ * Output value of every function is measured in arcseconds.
  */
 
 #ifndef SERIES_H

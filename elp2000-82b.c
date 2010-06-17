@@ -30,9 +30,15 @@ sphpoint geocentric_moon_position(double t)
     double zeta;
     // resulting spherical coordinate
     sphpoint sp;
-    
+
     // computing Delaunay arguments (non reduced)
     compute_delaunay_arguments(t, FULL_SERIES_TOTAL_TERMS, delaunay_arguments);
+
+    // each coordinate (longitude, latitude and radial distance) is computed
+    // by adding together results of each serie: Main Porblem and all
+    // perturbations;
+    // then, Moon's mean mean longitude (W₁) must be added to the value of
+    // the longitude to find the actual position
     
     // computing Main Problem
     sp.longitude = compute_serie_a_sin(delaunay_arguments,
@@ -47,14 +53,14 @@ sphpoint geocentric_moon_position(double t)
                                       main_problem_distance_multipliers,
                                       main_problem_distance_coefficients,
                                       TOTAL_MAIN_PROBLEM_DISTANCE_TERMS);
-    
+
     // recomputing reduced Delaunay arguments
     compute_delaunay_arguments(t, LINEAR_SERIES_TOTAL_TERMS, delaunay_arguments);
     // computing ELP2000 arguments
     compute_elp2000_arguments(t, LINEAR_SERIES_TOTAL_TERMS, elp2000_arguments);
     // computing precession argument
     zeta = compute_precession_argument(t);
-    
+
     // computing Earth figure perturbations (constant)
     sp.longitude += compute_serie_b(zeta, delaunay_arguments,
                                     earth_figure_longitude_0_multipliers,
@@ -68,7 +74,7 @@ sphpoint geocentric_moon_position(double t)
                                    earth_figure_distance_0_multipliers,
                                    earth_figure_distance_0_coefficients,
                                    TOTAL_EARTH_FIGURE_DISTANCE_0_TERMS);
-    
+
     // computing Earth figure perturbations (linear)
     sp.longitude += compute_serie_b(zeta, delaunay_arguments,
                                     earth_figure_longitude_0_multipliers,
@@ -82,10 +88,10 @@ sphpoint geocentric_moon_position(double t)
                                    earth_figure_distance_0_multipliers,
                                    earth_figure_distance_0_coefficients,
                                    TOTAL_EARTH_FIGURE_DISTANCE_0_TERMS) * t;
-    
+
     // computing planetary arguments
     compute_planetary_arguments(t, planetary_arguments);
-    
+
     // computing planetary 1 perturbations (constant)
     sp.longitude += compute_serie_c(planetary_arguments, delaunay_arguments,
                                     planetary1_longitude_0_multipliers,
@@ -99,7 +105,7 @@ sphpoint geocentric_moon_position(double t)
                                    planetary1_distance_0_multipliers,
                                    planetary1_distance_0_coefficients,
                                    TOTAL_PLANETARY1_DISTANCE_0_TERMS);
-    
+
     // computing planetary 1 perturbations (linear)
     sp.longitude += compute_serie_c(planetary_arguments, delaunay_arguments,
                                     planetary1_longitude_1_multipliers,
@@ -113,7 +119,7 @@ sphpoint geocentric_moon_position(double t)
                                    planetary1_distance_1_multipliers,
                                    planetary1_distance_1_coefficients,
                                    TOTAL_PLANETARY1_DISTANCE_1_TERMS) * t;
-    
+
     // computing planetary 2 perturbations (constant)
     sp.longitude += compute_serie_d(planetary_arguments, delaunay_arguments,
                                     planetary2_longitude_0_multipliers,
@@ -127,7 +133,7 @@ sphpoint geocentric_moon_position(double t)
                                    planetary2_distance_0_multipliers,
                                    planetary2_distance_0_coefficients,
                                    TOTAL_PLANETARY2_DISTANCE_0_TERMS);
-    
+
     // computing planetary 2 perturbations (linear)
     sp.longitude += compute_serie_d(planetary_arguments, delaunay_arguments,
                            planetary2_longitude_1_multipliers,
@@ -141,7 +147,7 @@ sphpoint geocentric_moon_position(double t)
                            planetary2_distance_1_multipliers,
                            planetary2_distance_1_coefficients,
                            TOTAL_PLANETARY2_DISTANCE_1_TERMS) * t;
-    
+
     // computing tidal effects (constant)
     sp.longitude += compute_serie_b(zeta, delaunay_arguments,
                            tidal_longitude_0_multipliers,
@@ -155,7 +161,7 @@ sphpoint geocentric_moon_position(double t)
                            tidal_distance_0_multipliers,
                            tidal_distance_0_coefficients,
                            TOTAL_TIDAL_DISTANCE_0_TERMS);
-    
+
     // computing tidal effects (linear)
     sp.longitude += compute_serie_b(zeta, delaunay_arguments,
                            tidal_longitude_1_multipliers,
@@ -169,7 +175,7 @@ sphpoint geocentric_moon_position(double t)
                            tidal_distance_1_multipliers,
                            tidal_distance_1_coefficients,
                            TOTAL_TIDAL_DISTANCE_1_TERMS) * t;
-    
+
     // computing Moon figure perturbations
     sp.longitude += compute_serie_b(zeta, delaunay_arguments,
                            moon_figure_longitude_multipliers,
@@ -183,7 +189,7 @@ sphpoint geocentric_moon_position(double t)
                            moon_figure_distance_multipliers,
                            moon_figure_distance_coefficients,
                            TOTAL_MOON_FIGURE_DISTANCE_TERMS);
-    
+
     // computing relativistic perturbations
     sp.longitude += compute_serie_b(zeta, delaunay_arguments,
                            relativistic_longitude_multipliers,
@@ -197,7 +203,7 @@ sphpoint geocentric_moon_position(double t)
                            relativistic_distance_multipliers,
                            relativistic_distance_coefficients,
                            TOTAL_RELATIVISTIC_DISTANCE_TERMS);
-    
+
     // computing planetary perturbations (solar eccentricity) (quadratic)
     sp.longitude += compute_serie_b(zeta, delaunay_arguments,
                            planetary_longitude_2_multipliers,
@@ -211,12 +217,12 @@ sphpoint geocentric_moon_position(double t)
                            planetary_distance_2_multipliers,
                            planetary_distance_2_coefficients,
                            TOTAL_PLANETARY_DISTANCE_2_TERMS) * t * t;
-    
+
     // recomputing full ELP2000 arguments
     compute_elp2000_arguments(t, FULL_SERIES_TOTAL_TERMS, elp2000_arguments);
     // adding mean mean longitude of the Moon (W₁)
     sp.longitude += elp2000_arguments[W1];
-    
+
     return sp;
 }
 

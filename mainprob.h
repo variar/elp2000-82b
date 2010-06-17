@@ -1,5 +1,5 @@
 /*
- * This file hold the data to compute Fourier series for the Main Problem for
+ * This file holds the data to compute Fourier series for the Main Problem for
  * three spherical variables: longitude, latitude and distance.
  * Given the series expression
  *

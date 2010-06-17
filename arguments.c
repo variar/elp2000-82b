@@ -74,12 +74,12 @@ double compute_precession_argument(double t)
     int i;          // loop index variable
     double tn;      // progreesive variable holding n-th power of t at n-th
     double w1;      // Moon mean mean longitude (W₁ of ELP arguments)
-    
+
     // computing W₁ of ELP arguments reduced to linear terms
     for (i = 0, w1 = 0.0, tn = 1.0; i < LINEAR_SERIES_TOTAL_TERMS; i++, tn *= t)
         w1 += elp2000_arguments_coefficients[W1][i] * tn;
-    
-    // computing precession argument
+
+    // computing precession argument ζ = W₁ + pt
     return w1 + precession_constant * t;
 }
 
@@ -88,7 +88,7 @@ void compute_elp2000_arguments(double t, int n, double arguments[])
     int i, j;       // loop index variables
     double tn;      // progreesive variable holding n-th power of t at n-th
                     // iteration of the loop (i.e. for n+1 term of the serie)
-    
+
     // computing variables W₁ through ϖ'
     for (i = W1; i <= OBP; i++){
         for (j = 0, arguments[i] = 0.0, tn = 1.0; j < n; j++, tn *= t)
@@ -100,20 +100,23 @@ void compute_delaunay_arguments(double t, int n, double arguments[])
 {
     // variable that holds intermediate ELP arguments
     double elp2000_arguments[TOTAL_ELP2000_ARGUMENTS];
-    
+
     // computing ELP arguments
     compute_elp2000_arguments(t, n, elp2000_arguments);
-    
+
     // computing Delaunay arguments from ELP arguments
-    // 180.0 * 3600.0 is π in arcseconds
+    // D = W₁ - T + π
     arguments[D] = elp2000_arguments[W1] - elp2000_arguments[T] + 180.0 * 3600.0;
+    // l' = T - ϖ'
     arguments[LP] = elp2000_arguments[T] - elp2000_arguments[OBP];
+    // l = W₁ - W₂
     arguments[L] = elp2000_arguments[W1] - elp2000_arguments[W2];
+    // F = W₁ - W₃
     arguments[F] = elp2000_arguments[W1] - elp2000_arguments[W3];
-    
+
     /* 
      NOTE!
-     
+
      For some reason computing Delaunay arguments using series and terms
      provided yeilds in a non consistent result (for instant, for
      t = 0.477905544147844) for the argument l'. Namely, value computed using
@@ -123,7 +126,7 @@ void compute_delaunay_arguments(double t, int n, double arguments[])
      int i, j;       // loop index variables
      double tn;      // progreesive variable holding n-th power of t at n-th
                      // iteration of the loop (i.e. for n+1 term of the serie)
-    
+
      for (i = 0; i < TOTAL_DELAUNAY_ARGUMENTS; i++){
          for (j = 0, arguments[i] = 0.0, tn = 1.0; j < n; j++, tn *= t)
              arguments[i] += delaunay_arguments_coefficients[i][j] * tn;
@@ -134,9 +137,9 @@ void compute_delaunay_arguments(double t, int n, double arguments[])
 void compute_planetary_arguments(double t, double arguments[])
 {
     int i;          // loop index variable
-    
+
     // computing planetary arguments, they are represented by
-    // linear series, i.e. λ = λ₀ + λ₁ * t.
+    // linear polynomials, i.e. λ = λ₀ + λ₁ * t.
     for (i = 0; i < TOTAL_PLANETARY_ARGUMENTS; i++){
         arguments[i] = planetary_arguments_coefficients[i][0];
         arguments[i] += planetary_arguments_coefficients[i][1] * t;

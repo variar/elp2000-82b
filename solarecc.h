@@ -1,5 +1,5 @@
 /*
- * This file hold the data to compute Fourier series for planetary
+ * This file holds the data to compute Fourier series for planetary
  * perturbations (solar eccentricity) of second order terms for three
  * spherical variables: longitude, latitude and distance.
  * Given the series expression

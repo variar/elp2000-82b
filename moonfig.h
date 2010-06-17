@@ -1,5 +1,5 @@
 /*
- * This file hold the data to compute Fourier series for the Moon figure
+ * This file holds the data to compute Fourier series for the Moon figure
  * perturbations for three spherical variables: longitude, latitude and
  * distance.
  * Given the series expression
