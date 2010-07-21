@@ -1,54 +1,42 @@
-This is an implementation of semi-analytical theory ELP version ELP 2000-82B
-developed by M. Chapront-Touzé and J. Chapront at Bureau des Longitude, Paris,
-France.
+This is an implementation of semi-analytical theory ELP version ELP 2000-82B developed by M. Chapront-Touzé and
+J. Chapront at Bureau des Longitude, Paris, France.
 
-This theory lets you compute relatively accurate geocentric position of the
-Moon.
+This theory lets you compute relatively accurate geocentric position of the Moon.
 
-To find information on the theory itself, refer to the following original
-papers:
+To find information on the theory itself, refer to the following original papers:
 
-1) M. Chapront-Touzé and J. Chapront. The lunar ephemeris ELP 2000.
-   Astronomy and Astrophysics, vol. 124, 1983, pp. 50-62.
-2) M. Chapront-Touzé and J. Chapront. ELP 2000-85: a semi-analytical lunar
-   ephemeris adequate for historical times. Astronomy and Astrophysics,
-   vol. 190, 1988, pp. 342-352.
-3) M. Chapront-Touzé, J. Chapront, G. Francou. Lunar solution ELP version
-   ELP 2000-82B. Observatoire de Paris, 2001 (1985).
-4) J. Chapront and G. Francou. The lunar theory ELP revisited. Introduction
-   of new planetary perturbations. Astronomy and Astrophysics, vol. 404,
-   2003, pp. 735-742.
+1) M. Chapront-Touzé and J. Chapront. The lunar ephemeris ELP 2000. Astronomy and Astrophysics, vol. 124, 1983,
+   pp. 50-62.
+2) M. Chapront-Touzé and J. Chapront. ELP 2000-85: a semi-analytical lunar ephemeris adequate for historical times.
+   Astronomy and Astrophysics, vol. 190, 1988, pp. 342-352.
+3) Lunar Solution ELP 2000-82B. Explanatory note.
+4) J. Chapront and G. Francou. The lunar theory ELP revisited. Introduction of new planetary perturbations.
+   Astronomy and Astrophysics, vol. 404, 2003, pp. 735-742.
    
 As well as data files found at ftp://cdsarc.u-srasbg.fr/pub/cats/VI/79
 
-To find information on the usage of the software refer to the comments in the
-code (mainly header comment of elp2000-82b.h) or the applied wiki page.
+To find information on the usage of the software refer to the comments in the code (mainly header comment of
+elp2000-82b.h).
 
 It is implemented in C and needs be linked only against math library.
 
-ELP 2000 uses Fourier series to compute Moon's position. During the computation
-of the series, coefficients are stored directly in memory. This was done to
-avoid I/O operations and speed up calculations. However, the downside of this is
-that the software may use relatively large amounts of memory, which should be
-considered before using it.
+ELP 2000 uses Fourier series to compute Moon's position. During the computation of the series, coefficients are stored
+directly in memory. This was done to avoid I/O operations and speed up calculations. However, the downside of this is
+that the software may use relatively large amounts of memory, which should be considered before using it.
 
-You are free to compile and use this software in any way you please unless it
-causes any harm to someone or something.
+You are free to compile and use this software in any way you please unless it causes any harm to someone or something.
 
-You are also free to modify, copy or fork existing source on one condition -
-your code that is in any way connected to these sources must
-    reference this library by name and include a link where you obtained
-    these sources from
+You are also free to modify, copy or fork existing source on one condition - your code that is in any way connected to
+these sources must:
+   reference this library by name and include a link where you obtained these sources from
 or
-    include a reference to the original paper by M. Chapront-Touzé and
-    J. Chapront
+   include a reference to the original paper by M. Chapront-Touzé and J. Chapront
     
-This is needed for the option of tracing original source materials and giving
-the credit to people who put their time and effort in these studies.
+This is needed for the option of tracing original source materials and giving the credit to people who put their time
+and effort in these studies.
 
-If you find any errors or inconsistencies with this software, please contact
-me at sertsy@gmail.com.
+If you find any errors or inconsistencies with this software, please contact me at sertsy@gmail.com.
 
 Serhii Tsyba
-16.06.2010
+21.07.2010
 Helsinki, Finland

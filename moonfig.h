@@ -1,26 +1,24 @@
 /*
- * This file holds the data to compute Fourier series for the Moon figure
- * perturbations for three spherical variables: longitude, latitude and
- * distance.
+ * This file holds the data to compute Poisson series for the Moon figure perturbations for three spherical variables:
+ * longitude, latitude and distance.
  * Given the series expression
  *
- *              Σ Asin(i₁ζ + i₂D + i₃l' + i₄l + i₅F + φ)
+ *                                  Σ Asin(i₁ζ + i₂D + i₃l' + i₄l + i₅F + φ)
  *
  * Each row of multipliers viariables holds five indices consequently
  *
- *                          i₁ i₂ i₃ i₄ i₅
+ *                                              i₁ i₂ i₃ i₄ i₅
  *
  * The value of i₁ (multiplier for precession argument ζ) is always 0.
  * Each row of the coefficients holds three values consequently
  *
- *                              φ A P
+ *                                                  φ A P
  *
- * Each of the size definitions specifies the size of each record.
- * Approximate period value P is not used during computations of series but
- * is kept for the sake of consistency of ELP data structures.
+ * Each of the size definitions specifies the size of each record. Approximate period value P is not used during
+ * computations of series but is kept for the sake of consistency of ELP data structures.
  *
- * This data was adapted from ELP data files at Centre de Donées astronomiques
- * de Strasbourg public resource: ftp://cdsarc.u-srasbg.fr/pub/cats/VI/79
+ * This data was adapted from ELP data files at Centre de Donées astronomiques de Strasbourg public resource:
+ * ftp://cdsarc.u-srasbg.fr/pub/cats/VI/79
  *
  * Files
  *      ELP28 - Moon figure perturbations, longitude

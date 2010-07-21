@@ -1,6 +1,6 @@
 /*
  * series.c
- * Created by Serhii Tsyba on 08.06.10.
+ * Created by Serhii Tsyba (sertsy@gmail.com) on 08.06.10.
  */
 
 #include "series.h"
@@ -15,12 +15,11 @@ double radian(double d)
     return d * PI / 180.0;
 }
 
-double compute_serie_a_sin(double delaunay_arguments[], int multipliers[][4],
-                           double coefficients[][7], int n)
+double compute_serie_a_sin(double delaunay_arguments[], int multipliers[][4], double coefficients[][7], int n)
 {
-    double acc;     // accumualtive variable holding the sum of a serie
-    double arg;     // accumulating variable holding the argument of a sine
-    int i, j;       // loop index variables
+    double acc;             // accumualtive variable holding the sum of a serie
+    double arg;             // accumulating variable holding the argument of a sine
+    int i, j;               // loop index variables
 
     for (i = 0, acc = 0.0; i < n; i++){
         // adding Delaunay arguments
@@ -34,12 +33,11 @@ double compute_serie_a_sin(double delaunay_arguments[], int multipliers[][4],
     return acc;
 }
 
-double compute_serie_a_cos(double delaunay_arguments[], int multipliers[][4],
-                           double coefficients[][7], int n)
+double compute_serie_a_cos(double delaunay_arguments[], int multipliers[][4], double coefficients[][7], int n)
 {
-    double acc;     // accumualtive variable holding the sum of a serie
-    double arg;     // accumulating variable holding the argument of a cosine
-    int i, j;       // loop index variables
+    double acc;             // accumualtive variable holding the sum of a serie
+    double arg;             // accumulating variable holding the argument of a cosine
+    int i, j;               // loop index variables
 
     for (i = 0, acc = 0.0; i < n; i++){
         // adding Delaunay arguments
@@ -53,12 +51,11 @@ double compute_serie_a_cos(double delaunay_arguments[], int multipliers[][4],
     return acc;
 }
 
-double compute_serie_b(double precession, double delaunay_arguments[],
-                       int multipliers[][5], double coefficients[][3], int n)
+double compute_serie_b(double precession, double delaunay_arguments[], int multipliers[][5], double coefficients[][3], int n)
 {
-    double acc;     // accumualtive variable holding the sum of a serie
-    double arg;     // accumulating variable holding the argument of a sine
-    int i, j;       // loop index variables
+    double acc;             // accumualtive variable holding the sum of a serie
+    double arg;             // accumulating variable holding the argument of a sine
+    int i, j;               // loop index variables
 
     for (i = 0, acc = 0.0; i < n; i++){
         // adding precession argument
@@ -69,19 +66,17 @@ double compute_serie_b(double precession, double delaunay_arguments[],
             arg += multipliers[i][j + 1] * delaunay_arguments[j];
 
         // computing the current term of the serie
-        acc += coefficients[i][1] * sin(radian(arg / ARCSECONDS_IN_DEGREE) +
-                                        radian(coefficients[i][0]));
+        acc += coefficients[i][1] * sin(radian(arg / ARCSECONDS_IN_DEGREE) + radian(coefficients[i][0]));
     }
 
     return acc;
 }
 
-double compute_serie_c(double planetary_arguments[], double delaunay_arguments[],
-                       int multipliers[][11], double coefficients[][3], int n)
+double compute_serie_c(double planetary_arguments[], double delaunay_arguments[], int multipliers[][11], double coefficients[][3], int n)
 {
-    double acc;     // accumualtive variable holding the sum of a serie
-    double arg;     // accumulating variable holding the argument of a sine
-    int i, j;       // loop index variables
+    double acc;             // accumualtive variable holding the sum of a serie
+    double arg;             // accumulating variable holding the argument of a sine
+    int i, j;               // loop index variables
     
     for (i = 0; acc = 0.0; i < n, i++){
         // adding planetary arguments
@@ -94,19 +89,17 @@ double compute_serie_c(double planetary_arguments[], double delaunay_arguments[]
         arg += multipliers[i][j++] * delaunay_arguments[F];
 
         // computing the current term of the serie
-        acc += coefficients[i][1] * sin(radian(arg / ARCSECONDS_IN_DEGREE) +
-                                        radian(coefficients[i][0]));
+        acc += coefficients[i][1] * sin(radian(arg / ARCSECONDS_IN_DEGREE) + radian(coefficients[i][0]));
     }
 
     return acc;
 }
 
-double compute_serie_d(double planetary_arguments[], double delaunay_arguments[],
-                       int multipliers[][11], double coefficients[][3], int n)
+double compute_serie_d(double planetary_arguments[], double delaunay_arguments[], int multipliers[][11], double coefficients[][3], int n)
 {
-    double acc;     // accumualtive variable holding the sum of a serie
-    double arg;     // accumulating variable holding the argument of a sine
-    int i, j;       // loop index variables
+    double acc;             // accumualtive variable holding the sum of a serie
+    double arg;             // accumulating variable holding the argument of a sine
+    int i, j;               // loop index variables
 
     for (i = 0; acc = 0.0; i < n, i++){
         // adding planetary arguments except Neptune
@@ -118,8 +111,7 @@ double compute_serie_d(double planetary_arguments[], double delaunay_arguments[]
             arg += multipliers[i][TOTAL_PLANETARY_ARGUMENTS + j] * delaunay_arguments[j];
 
         // computing the current term of the serie
-        acc += coefficients[i][1] * sin(radian(arg / ARCSECONDS_IN_DEGREE) +
-                                        radian(coefficients[i][0]));
+        acc += coefficients[i][1] * sin(radian(arg / ARCSECONDS_IN_DEGREE) + radian(coefficients[i][0]));
     }
 
     return acc;

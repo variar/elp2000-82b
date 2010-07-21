@@ -1,24 +1,23 @@
 /*
- * This file holds the data to compute Fourier series for the Main Problem for
- * three spherical variables: longitude, latitude and distance.
+ * This file holds the data to compute Fourier series for the Main Problem for three spherical variables: longitude,
+ * latitude and distance.
  * Given the series expression
  *
- *              Σ A{sin|cos}(i₁D + i₂l' + i₃l + i₄F)
+ *                                  Σ A{sin|cos}(i₁D + i₂l' + i₃l + i₄F)
  *
  * Each row of multipliers viariables holds four indices consequently
  *
- *                          i₁ i₂ i₃ i₄
+ *                                              i₁ i₂ i₃ i₄
  *
  * Each row of the coefficients holds seven values consequently
  *
- *              A ∂A/∂σ₁ ∂A/∂σ₂ ∂A/∂σ₃ ∂A/∂σ₄ ∂A/∂σ₅ ∂A/∂σ₆
+ *                              A ∂A/∂σ₁ ∂A/∂σ₂ ∂A/∂σ₃ ∂A/∂σ₄ ∂A/∂σ₅ ∂A/∂σ₆
  *
- * Derivatives of A are not used during series computations of series but
- * are kept for the sake of consistency of ELP data structures.
- * Each of the size definitions specifies the size of each record.
+ * Derivatives of A are not used during series computations of series but are kept for the sake of consistency of ELP
+ * data structures. Each of the size definitions specifies the size of each record.
  *
- * This data was adapted from ELP data files at Centre de Donées astronomiques
- * de Strasbourg public resource: ftp://cdsarc.u-srasbg.fr/pub/cats/VI/79
+ * This data was adapted from ELP data files at Centre de Donées astronomiques de Strasbourg public resource:
+ * ftp://cdsarc.u-srasbg.fr/pub/cats/VI/79
  *
  * Files
  *      ELP01 - Main problem, longitude
