@@ -1,7 +1,7 @@
-![ELP2000-82B logo](https://dl.dropbox.com/u/4936034/Referred/ELP2000-82B.png)
-
 ELP2000-82B
 ===========
+
+<img border="15" align="right" src=https://dl.dropbox.com/u/4936034/Referred/ELP2000-82B.png>
 
 Given library provides functionality to compute lunar positions and thus allowing contruction of lunar ephemerides.
 
