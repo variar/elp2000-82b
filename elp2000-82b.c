@@ -1,6 +1,6 @@
 /*
- *  elp2000.c
- *  Created by Serhii Tsyba (sertsy@gmail.com) on 21.04.10.
+ * elp2000.c
+ * Created by Serhii Tsyba (sertsy@gmail.com) on 21.04.10.
  */
 
 #include "mainprob.h"
@@ -20,18 +20,18 @@
 
 spherical_point geocentric_moon_position(double t)
 {
-    double delaunay_arguments[TOTAL_DELAUNAY_ARGUMENTS];        // array holding Delaunay arguments
-    double elp2000_arguments[TOTAL_ELP2000_ARGUMENTS];          // array holding ELP2000 arguments
-    double planetary_arguments[TOTAL_PLANETARY_ARGUMENTS];      // array holdng planetary arguments
-    double zeta;                                                // argument that includes precession (ζ)
-    spherical_point sp;                                         // resulting spherical coordinate
-
-    // computing Delaunay arguments (non reduced)
-    compute_delaunay_arguments(t, FULL_SERIES_TOTAL_TERMS, delaunay_arguments);
+    double delaunay_arguments[TOTAL_DELAUNAY_ARGUMENTS];        // Delaunay arguments
+    double elp2000_arguments[TOTAL_ELP2000_ARGUMENTS];          // ELP2000 arguments
+    double planetary_arguments[TOTAL_PLANETARY_ARGUMENTS];      // planetary arguments
+    double zeta;                                                // argument of the precession precession (ζ)
+    spherical_point sp;                                         // result position of the Moon
 
     // each coordinate (longitude, latitude and radial distance) is computed by adding together results of each serie:
     // Main Porblem and all perturbations; then, Moon's mean mean longitude (W₁) must be added to the value of the
     // longitude to find the actual position
+    
+    // computing Delaunay arguments (non reduced)
+    compute_delaunay_arguments(t, FULL_SERIES_TOTAL_TERMS, delaunay_arguments);
     
     // computing Main Problem
     sp.longitude = compute_serie_a_sin(delaunay_arguments, main_problem_longitude_multipliers,
@@ -148,12 +148,12 @@ spherical_point geocentric_moon_position(double t)
     return sp;
 }
 
-spherical_point geocentric_moon_position_date(double t)
+spherical_point geocentric_moon_position_of_date(double t)
 {
-    spherical_point sp;             // geocentric Moon position referred to ELP reference frame
-    double p;                       // accumulated precession between J2000 and a given date
+    spherical_point sp;         // geocentric Moon position referred to ELP reference frame
+    double p;                   // accumulated precession between J2000 and a given date
     
-    // calculating Moon's position in spherical coordinates referred to ELP reference frame
+    // calculating Moon's position referred to ELP reference frame
     sp = geocentric_moon_position(t);
     
     // computing accumulated precession between J2000 and a given date
@@ -167,28 +167,30 @@ spherical_point geocentric_moon_position_date(double t)
 
 cartesian_3d_point geocentric_moon_position_cartesian(double t)
 {
-    spherical_point sp;             // a value in spherical coordinates
-    cartesian_3d_point rp;          // resulting value in rectangular coordiantes (reference frame of ELP2000)
+    spherical_point sp;         // a value in spherical coordinates
+    cartesian_3d_point rp;      // resulting value in rectangular coordiantes (reference frame of ELP2000)
 
     // computing Moon's position in spherical coordinates
     sp = geocentric_moon_position(t);
     
+    // converting longitude and latitude from arcseconds to radians (π = 368000")
+    sp.longitude *= M_PI / 648000.0;
+    sp.latitude *= M_PI / 648000.0;
+    
     // converting to rectangular coordinates
-    rp.x = sp.distance * cos(radian(sp.longitude / ARCSECONDS_IN_DEGREE)) * cos(radian(sp.latitude / ARCSECONDS_IN_DEGREE));
-    rp.y = sp.distance * sin(radian(sp.longitude / ARCSECONDS_IN_DEGREE)) * cos(radian(sp.latitude / ARCSECONDS_IN_DEGREE));
-    rp.z = sp.distance * sin(radian(sp.latitude / ARCSECONDS_IN_DEGREE));
+    rp.x = sp.distance * cos(sp.longitude) * cos(sp.latitude);
+    rp.y = sp.distance * sin(sp.longitude) * cos(sp.latitude);
+    rp.z = sp.distance * sin(sp.latitude);
     
     return rp;
 }
 
-cartesian_3d_point geocentric_moon_position_cartesian_J2000(double t)
+cartesian_3d_point geocentric_moon_position_cartesian_of_J2000(double t)
 {
-    cartesian_3d_point rp;          // position of the Moon in rectangular coordinates referred to the ELP2000
-                                    // reference frame
-    cartesian_3d_point re2000p;     // position of the Moon in rectangular coordinates referred to the internal mean
-                                    // ecliptic and equinox of J2000
-    
-    double p, q;                    // intermediate auxiliary convertion variables from Laskar's series
+    cartesian_3d_point rp;      // position of the Moon in rectangular coordinates referred to the ELP2000 reference frame
+    cartesian_3d_point re2000p; // position of the Moon in rectangular coordinates referred to the internal mean ecliptic
+                                // and equinox of J2000
+    double p, q;                // intermediate auxiliary convertion variables from Laskar's series
     
     // computing Moon's position in rectangular coordinates referred to the ELP2000 reference frame
     rp = geocentric_moon_position_cartesian(t);
@@ -207,7 +209,7 @@ cartesian_3d_point geocentric_moon_position_cartesian_J2000(double t)
     return re2000p;
 }
 
-cartesian_3d_point geocentric_moon_position_cartesian_FK5(double t)
+cartesian_3d_point geocentric_moon_position_cartesian_of_FK5(double t)
 {
     cartesian_3d_point re2000p;     // position of the Moon in rectangular coordianted referred to the internal mean
                                     // ecliptic and equinox of J2000
@@ -215,7 +217,7 @@ cartesian_3d_point geocentric_moon_position_cartesian_FK5(double t)
                                     // (mean equator and rotational mean equinox of J2000)
     
     // computing Moon's position in rectangular coordinates referred to the internal mean ecliptic and equinox of J2000
-    re2000p = geocentric_moon_position_cartesian_J2000(t);
+    re2000p = geocentric_moon_position_cartesian_of_J2000(t);
     
     // performing transformation to rectangular coordinates referred to the FK5 equator
     rfk5p.x =  1.000000000000 * re2000p.x + 0.000000437913 * re2000p.y - 0.000000189859 * re2000p.z;
