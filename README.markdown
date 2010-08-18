@@ -38,7 +38,7 @@ Provided files contain the following functionality
 <br />
 Serhii Tsyba
 
-17.08.2010<br />
+18.08.2010<br />
 Helsinki, Finland
 
 [1]: https://dl.dropbox.com/u/4936034/Referred/ELP2000-82B.png          "ELP2000-82B logo"
