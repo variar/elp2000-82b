@@ -32,8 +32,8 @@ Provided files contain the following functionality
 * **series** contains auxiliary routines that compute Fourier and Poisson series of the ELP theory.
 * All other header files define arrays of coefficients of ELP theory and are of no practical use outside given library.
 
-If you find any errors or inconsistencies with this software, you are very welcome to contact me at
-[sertsy@gmail.com](mailto:sertsy@gmail.com).
+<br />
+**If you find any errors or inconsistencies with this software, please contact me via [e-mail][2]**
 
 <br />
 Serhii Tsyba
@@ -42,3 +42,4 @@ Serhii Tsyba
 Helsinki, Finland
 
 [1]: https://dl.dropbox.com/u/4936034/Referred/ELP2000-82B.png          "ELP2000-82B logo"
+[2]: mailto:sertsy@gmail.com                                            "Contact e-mail"
