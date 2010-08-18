@@ -20,7 +20,7 @@
  * computations of series but is kept for the sake of consistency of ELP data structures.
  *
  * This data was adapted from ELP data files at Centre de Donées astronomiques de Strasbourg public resource:
- * ftp://cdsarc.u-srasbg.fr/pub/cats/VI/79
+ * http://vizier.cfa.harvard.edu/viz-bin/ftp-index?VI/79
  *
  * Files
  *      ELP22 - Moon figure perturbations, longitude

@@ -1,10 +1,10 @@
 ELP2000-82B
 ===========
 
-Given library provides functionality to compute lunar positions and thus allowing contruction of lunar ephemerides.
+This library provides functionality to compute lunar positions and thus allowing contruction of lunar ephemerides.
 
 It is based on semi-analytical **theory ELP version ELP 2000-82B** developed by **M. Chapront-Touzé** and **J. Chapront**
-at Bureau des Longitude, Paris, France.
+at Bureau des Longitudes, Paris, France.
 
 To find information on the theory itself, refer to the following original papers:
 
@@ -16,9 +16,9 @@ To find information on the theory itself, refer to the following original papers
 4. J. Chapront and G. Francou. The lunar theory ELP revisited. Introduction of new planetary perturbations.
    Astronomy and Astrophysics, vol. 404, 2003, pp. 735-742.
    
-As well as data files found through [Vizier Catalon FTP service](http://vizier.cfa.harvard.edu/viz-bin/ftp-index?VI/79).
+As well as data files found through [Vizier Catalog FTP service](http://vizier.cfa.harvard.edu/viz-bin/ftp-index?VI/79).
 
-![ELP2000-82B logo](https://dl.dropbox.com/u/4936034/Referred/ELP2000-82B.png)
+![ELP2000-82B logo][1]
 
 This library is implemented in C and needs be linked only against math library.
 
@@ -35,6 +35,10 @@ Provided files contain the following functionality
 If you find any errors or inconsistencies with this software, you are very welcome to contact me at
 [sertsy@gmail.com](mailto:sertsy@gmail.com).
 
+<br />
 Serhii Tsyba
-17.08.2010
+
+17.08.2010<br />
 Helsinki, Finland
+
+[1]: https://dl.dropbox.com/u/4936034/Referred/ELP2000-82B.png          "ELP2000-82B logo"

@@ -18,7 +18,7 @@
  * data structures. Each of the size definitions specifies the size of each data set.
  *
  * This data was adapted from ELP data files at Centre de Donées astronomiques de Strasbourg public resource:
- * ftp://cdsarc.u-srasbg.fr/pub/cats/VI/79
+ * http://vizier.cfa.harvard.edu/viz-bin/ftp-index?VI/79
  *
  * Files
  *      ELP01 - Main problem, longitude
