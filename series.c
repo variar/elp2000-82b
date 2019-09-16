@@ -25,12 +25,12 @@ double compute_serie_a_sin(double delaunay_arguments[], int multipliers[], doubl
     double acc;                 // accumualtive variable holding the sum of a serie
     double arg;                 // accumulating variable holding the argument of a sine
     int i, j;                   // loop index variables
-    
+
     for (i = 0, acc = 0.0; i < n; i++){
         // adding Delaunay arguments
         for (j = D, arg = 0.0; j <= F; j++)
             arg += multipliers[i * SERIE_A_TOTAL_MULTIPLIERS + j] * delaunay_arguments[j];
-        
+
         // converting argument from arcseconds to radians (π = 648000")
         arg *= M_PI / 648000.0;
 
@@ -51,7 +51,7 @@ double compute_serie_a_cos(double delaunay_arguments[], int multipliers[], doubl
         // adding Delaunay arguments
         for (j = D, arg = 0.0; j <= F; j++)
             arg += multipliers[i * SERIE_A_TOTAL_MULTIPLIERS + j] * delaunay_arguments[j];
-        
+
         // converting argument from arcseconds to radians (π = 648000")
         arg *= M_PI / 648000.0;
 
@@ -75,10 +75,10 @@ double compute_serie_b(double precession, double delaunay_arguments[], int multi
         // adding Delaunay arguments
         for (j = D; j <= F; j++)
             arg += multipliers[i * SERIE_B_TOTAL_MULTIPLIERS + j + 1] * delaunay_arguments[j];
-        
+
         // adding phase to the value of the argument
         arg += coefficients[i * SERIE_B_TOTAL_COEFFICIENTS];
-        
+
         // converting argument from arcseconds to radians (π = 648000")
         arg *= M_PI / 648000.0;
 
@@ -91,11 +91,11 @@ double compute_serie_b(double precession, double delaunay_arguments[], int multi
 
 double compute_serie_c(double planetary_arguments[], double delaunay_arguments[], int multipliers[], double coefficients[], int n)
 {
-    double acc;                 // accumualtive variable holding the sum of a serie
+    double acc;             // accumualtive variable holding the sum of a serie
     double arg;                 // accumulating variable holding the argument of a sine
     int i, j;                   // loop index variables
-    
-    for (i = 0; acc = 0.0; i < n, i++){
+
+    for (i = 0, acc = 0.0; i < n; i++){
         // adding planetary arguments from Mercury to Neptune
         for (j = MERCURY, arg = 0.0; j <= NEPTUNE; j++)
             arg += multipliers[i * SERIE_C_TOTAL_MULTIPLIERS + j] * planetary_arguments[j];
@@ -104,12 +104,12 @@ double compute_serie_c(double planetary_arguments[], double delaunay_arguments[]
         arg += multipliers[i * SERIE_C_TOTAL_MULTIPLIERS + j + 1] * delaunay_arguments[D];
         arg += multipliers[i * SERIE_C_TOTAL_MULTIPLIERS + j + 1] * delaunay_arguments[L];
         arg += multipliers[i * SERIE_C_TOTAL_MULTIPLIERS + j + 1] * delaunay_arguments[F];
-        
+
         // adding phase to the value of the argument
         arg += coefficients[i * SERIE_C_TOTAL_COEFFICIENTS];
-        
+
         // converting argument from arcseconds to radians (π = 648000")
-        arg *= M_PI / 648000.0;        
+        arg *= M_PI / 648000.0;
 
         // computing the current term of the serie
         acc += coefficients[i * SERIE_C_TOTAL_COEFFICIENTS + 1] * sin(arg);
@@ -120,11 +120,11 @@ double compute_serie_c(double planetary_arguments[], double delaunay_arguments[]
 
 double compute_serie_d(double planetary_arguments[], double delaunay_arguments[], int multipliers[], double coefficients[], int n)
 {
-    double acc;             // accumualtive variable holding the sum of a serie
+    double acc;         // accumualtive variable holding the sum of a serie
     double arg;             // accumulating variable holding the argument of a sine
     int i, j;               // loop index variables
 
-    for (i = 0; acc = 0.0; i < n, i++){
+    for (i = 0, acc=0.0; i < n; i++) {
         // adding planetary arguments from Mercury to Uranus
         for (j = MERCURY, arg = 0.0; j <= URANUS; j++)
             arg += multipliers[i * SERIE_D_TOTAL_MULTIPLIERS + j] * planetary_arguments[j];
@@ -132,10 +132,10 @@ double compute_serie_d(double planetary_arguments[], double delaunay_arguments[]
         // adding Delaunay arguments
         for (j = D; j <= F; j++)
             arg += multipliers[i * SERIE_D_TOTAL_MULTIPLIERS + TOTAL_PLANETARY_ARGUMENTS + j] * delaunay_arguments[j];
-        
+
         // adding phase to the value of the argument
         arg += coefficients[i * SERIE_D_TOTAL_COEFFICIENTS];
-        
+
         // converting argument from arcseconds to radians (π = 648000")
         arg *= M_PI / 648000.0;
 
